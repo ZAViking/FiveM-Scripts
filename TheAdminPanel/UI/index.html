@@ -1,0 +1,60 @@
+<!-- Example buttons in your admin panel -->
+<button id="godCommandButton" class="command-button">God Command</button>
+<button id="adminCommandButton" class="command-button">Admin Command</button>
+
+
+<!-- admin_panel.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .panel {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        .button {
+            background: #333;
+            border: 1px solid #555;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h2>Admin Panel</h2>
+        <button class="button" onclick="executeCommand('banPlayer')">Ban Player</button>
+        <button class="button" onclick="executeCommand('kickPlayer')">Kick Player</button>
+        <!-- Add more buttons for other commands -->
+    </div>
+
+    <script>
+        // This function is used to call the server-side function when a button is pressed
+        function executeCommand(command) {
+            fetch(`https://your_resource_name/${command}`, {
+                method: 'POST',
+                body: JSON.stringify({}),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.json())
+              .then(data => console.log(data));
+        }
+    </script>
+</body>
+</html>
